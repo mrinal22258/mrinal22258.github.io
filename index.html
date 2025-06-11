@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumar Mrinal - AI & Computer Science Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --dark-bg: #0A0A0A;
+            --secondary-dark: #1A1A1A;
+            --accent-blue: #00D4FF;
+            --text-light: #FFFFFF;
+            --text-gray: #B0B0B0;
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            --gradient-dark: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8)); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: var(--gradient-primary);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-gold);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+
+        .hero-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 25px;
+            border: 4px solid var(--primary-gold);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInRight 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            animation: slideInLeft 1s ease-out 0.7s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--gradient-primary);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .card h3 {
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p, .card li {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        /* Contact */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .contact-item {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-gold);
+        }
+
+        .contact-item a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 212, 255, 0.1));
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            background: var(--gradient-primary);
+            color: var(--dark-bg);
+            transform: scale(1.05);
+        }
+
+        .course-list {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            grid-column: 1 / -1;
+        }
+
+        .course-list h3 {
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .course-item {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 12px 18px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-gold);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .course-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* Projects */
+        .project-card {
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            box-shadow: -10px 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .project-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid var(--accent-blue);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            background: var(--accent-blue);
+            color: var(--dark-bg);
+        }
+
+        /* Experience */
+        .experience-item {
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-top: 3px solid var(--primary-gold);
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: slideInFromBottom 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">KM</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#achievements">Awards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="your-photo.jpg" alt="Kumar Mrinal">
+            </div>
+
+            <h1>Kumar Mrinal</h1>
+            <p>Computer Science & AI Engineer | Deep Learning and NLP Researcher</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>I'm a passionate Computer Science and AI student at IIIT Delhi, specializing in deep learning, neural networks, and cutting-edge AI research. With hands-on experience in retinal ganglion cell modeling and neural cryptanalysis, I'm dedicated to pushing the boundaries of artificial intelligence and machine learning.</p>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <h2>Research Experience</h2>
+        
+        <div class="experience-item">
+            <h3>ECE Research Lab - Undergraduate Researcher</h3>
+            <p><strong>Jan 2025 – Apr 2025</strong></p>
+            <ul>
+                <li><strong>Project Focus:</strong> Retinal ganglion cell modeling using deep neural networks</li>
+                <li><strong>Contribution:</strong> Engineered deep learning pipelines (BNCNN, CNN-BiLSTM) for predicting neuronal firing rates on the naturalscenes.h5 dataset, achieving <strong>0.52</strong> validation correlation with biologically plausible outputs</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Cryptography Research Lab - Undergraduate Researcher</h3>
+            <p><strong>Jan 2025 – Apr 2025</strong></p>
+            <ul>
+                <li><strong>Project Focus:</strong> Neural cryptanalysis of lightweight symmetric ciphers</li>
+                <li><strong>Contribution:</strong> Designed deep distinguishers (ResNet, CNN-BiLSTM) for SIMON32/SPECK32 achieving <strong>74%</strong> accuracy; integrated classical differential patterns into training to expose cipher vulnerabilities</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Featured Projects</h2>
+
+        <div class="project-card">
+            <h3>Gendered Abuse Detection in Indic Languages</h3>
+            <p><strong>Feb 2025 – Apr 2025</strong></p>
+            <p>Built deep learning models to detect gendered, targeted, and explicit abuse in English, Hindi, and Tamil tweets using the ICON23 shared task dataset. Implemented CNN-BiLSTM and GRU-Attention with GloVe embeddings, achieving top performance via attention-based architectures and transfer learning.</p>
+            <p><strong>Tech:</strong> TensorFlow, GRU-Attention, GloVe, LSTM, NLTK, Natural Language Processing</p>
+            <div class="project-links">
+                <a href="https://github.com/mrinal22258/Gendered-Abuse-Detection-in-Indic-Languages" target="_blank">GitHub</a>
+                <a href="https://www.kaggle.com/competitions/gendered-abuse-detection-shared-task/data" target="_blank">Kaggle</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Distribution Ray Tracing</h3>
+            <p><strong>Nov 2024 - Dec 2024</strong></p>
+            <p>Implemented distributed ray tracing with realistic effects such as soft shadows, depth of field, and motion blur. Achieved visual realism by sampling rays over light sources, lens apertures, and time.</p>
+            <p><strong>Tech:</strong> C++, OpenGL, Ray Tracing, Computer Graphics</p>
+            <div class="project-links">
+                <a href="https://github.com/mrinal22258/Distribution-Ray-Tracing" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>AI Navigation and Pathfinding</h3>
+            <p><strong>Nov 2024</strong></p>
+            <p>Built an AI navigation system using Hidden Markov Models, Bayesian networks, and various movement strategies (e.g., Roomba classes, hill climbing) to optimize paths in dynamic environments.</p>
+            <p><strong>Tech:</strong> Python, HMM, Bayesian Networks, Pathfinding, Artificial Intelligence</p>
+            <div class="project-links">
+                <a href="https://github.com/mrinal22258/AI" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>House Price Prediction</h3>
+            <p><strong>Oct 2024 - Nov 2024</strong></p>
+            <p>Built a machine learning model to predict house prices using Linear Regression, Decision Trees, and Random Forest. Conducted data cleaning, feature engineering, and visualization using Matplotlib and Seaborn.</p>
+            <p><strong>Tech:</strong> Python, Scikit-Learn, Machine Learning</p>
+            <div class="project-links">
+                <a href="https://github.com/mrinal22258/House-Price-Prediction" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2>Technical Skills</h2>
+        
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Haskell</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>AI/ML Frameworks</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">Scikit-Learn</span>
+                    <span class="skill-tag">NLTK</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Data Science</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Seaborn</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Development Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">VSCode</span>
+                    <span class="skill-tag">IntelliJ IDEA</span>
+                    <span class="skill-tag">LibGDX</span>
+                    <span class="skill-tag">Figma</span>
+                </div>
+            </div>
+
+            <div class="course-list">
+                <h3>Specialized Coursework</h3>
+                <div class="course-grid">
+                    <div class="course-item">Machine Learning</div>
+                    <div class="course-item">Deep Learning</div>
+                    <div class="course-item">Natural Language Processing</div>
+                    <div class="course-item">Computer Graphics</div>
+                    <div class="course-item">Reinforcement Learning</div>
+                    <div class="course-item">Artificial Intelligence</div>
+                    <div class="course-item">Statistical Machine Learning</div>
+                    <div class="course-item">Convex Optimization</div>
+                    <div class="course-item">Data Structures & Algorithms</div>
+                    <div class="course-item">Database Management Systems</div>
+                    <div class="course-item">Operating Systems</div>
+                    <div class="course-item">Advanced Programming in Java</div>
+                    <div class="course-item">Healthcare Innovation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <h2>Education</h2>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>Indraprastha Institute of Information Technology Delhi</h3>
+                <p><strong>Bachelor of Technology - Computer Science and Artificial Intelligence</strong></p>
+                <p>Nov 2022 - May 2026</p>
+                <p>Delhi, India</p>
+            </div>
+
+            <div class="card">
+                <h3>Lal Bahadur Shastri School, R.K. Puram</h3>
+                <p><strong>CBSE 12th Board</strong></p>
+                <p>Percentage: 93.4%</p>
+                <p>Apr 2019 - Mar 2021</p>
+                <p>Delhi, India</p>
+            </div>
+
+            <div class="card">
+                <h3>Hope Hall Foundation School, R.K. Puram</h3>
+                <p><strong>CBSE 10th Board</strong></p>
+                <p>Percentage: 78.6%</p>
+                <p>Apr 2017 - Mar 2019</p>
+                <p>Delhi, India</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="section">
+        <h2>Certifications</h2>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>Nestlé E-Learning 2025</h3>
+                <div class="project-links">
+                    <a href="https://github.com/mrinal22258/Nestle-E-Learning-2025-Certificate" target="_blank">Certificate</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Self Driving Cars</h3>
+                <p>MachineLearning.AI</p>
+                <div class="project-links">
+                    <a href="https://github.com/mrinal22258/SDC-Certificate" target="_blank">Certificate</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Functional Programming I and II</h3>
+                <p>Haskell MOOC, University of Helsinki</p>
+                <div class="project-links">
+                    <a href="https://github.com/mrinal22258/Functional-Programming-Certificate" target="_blank">Certificate</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Graph Theory Programming Camp</h3>
+                <p>AlgoUniversity</p>
+                <div class="project-links">
+                    <a href="https://github.com/mrinal22258/AlgoUniversity-Certificate" target="_blank">Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="section">
+        <h2>Honors & Awards</h2>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>🏆 3rd Place - Sherlocked Enigma '25</h3>
+                <p>Secured 3rd place among 100+ teams at Lady Shri Ram College</p>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Core Member - Math Talk 2024</h3>
+                <p>Organized by Math Club (Evariste), drew 150+ participants</p>
+            </div>
+
+            <div class="card">
+                <h3>🎵 Music Week 2025 Performer</h3>
+                <p>Hosted by Music Club (Audiobytes), with 100+ participants</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="positions" class="section">
+        <h2>Leadership Positions</h2>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>Events OC</h3>
+                <p>Odyssey IIIT Delhi Cultural Fest</p>
+                <p><strong>Jan 2024</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Core Member</h3>
+                <p>Evariste IIIT Delhi Math Society</p>
+                <p><strong>Nov 2022 - Present</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Core Member</h3>
+                <p>Audiobytes IIIT Delhi Music Society</p>
+                <p><strong>Jan 2025 - Present</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Get In Touch</h2>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>📧 Email</h3>
+                <a href="mailto:mrinal22258@iiitd.ac.in">mrinal22258@iiitd.ac.in</a>
+            </div>
+
+
+            <div class="contact-item">
+                <h3>💼 LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/kumar-mrinal-840a55297/" target="_blank">Connect with me</a>
+            </div>
+
+            <div class="contact-item">
+                <h3>💻 GitHub</h3>
+                <a href="https://github.com/mrinal22258" target="_blank">View my projects</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.9)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.card, .project-card, .experience-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const bgAnimation = document.querySelector('.bg-animation');
+            bgAnimation.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            });
+        });
+
+        // Active navigation highlight
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
