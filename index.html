@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kumar Mrinal — CS & AI</title>
+  <meta name="description" content="Portfolio of Kumar Mrinal — CS & AI @ IIIT Delhi. Deep Learning, NLP, Computer Vision, Robotics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="pre-logo">KM</div>
+    <div class="pre-bar-wrap">
+      <div class="pre-bar" id="preBar"></div>
+    </div>
+    <div class="pre-count" id="preCount">0</div>
+  </div>
+
+  <!-- CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-blob"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">KM</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="https://github.com/mrinal22258" target="_blank" class="nav-cta">GitHub ↗</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <canvas id="bg-canvas"></canvas>
+    <div class="hero-noise"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">CS &amp; AI @ IIIT Delhi</p>
+      <h1 class="hero-name">
+        <div class="name-row"><span class="name-mask"><span class="name-inner">KUMAR</span></span></div>
+        <div class="name-row"><span class="name-mask"><span class="name-inner">MRINAL</span></span></div>
+      </h1>
+      <p class="hero-tagline">Deep Learning · NLP · Computer Vision · Robotics</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary" id="hero-work-btn">View Work</a>
+        <a href="#contact" class="btn-ghost" id="hero-talk-btn">Let's Talk</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" id="scrollHint">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+    <div class="hero-bg-word">MRINAL</div>
+  </section>
+
+  <!-- ABOUT — Hinge-inspired -->
+  <section id="about">
+    <div class="section-label reveal-fade">Who I Am</div>
+    <div class="about-wrap">
+
+      <!-- Hinge Profile Card -->
+      <div class="hinge-card" id="hingeCard">
+        <div class="hinge-photo-wrap">
+          <img src="photo.jpg" alt="Kumar Mrinal" id="hingePhoto" onerror="document.getElementById('hingeFallback').style.display='flex';this.style.display='none'" />
+          <div class="hinge-photo-fallback" id="hingeFallback">KM</div>
+          <div class="hinge-photo-overlay">
+            <span class="hinge-photo-name">Kumar Mrinal</span>
+            <span class="hinge-photo-loc">📍 Delhi, India</span>
+          </div>
+        </div>
+        <div class="hinge-prompts-area">
+          <div class="hinge-prompt active" data-idx="0">
+            <div class="hinge-q">My green flag</div>
+            <div class="hinge-a">I debug at 2 am and still find it beautiful 🌙</div>
+          </div>
+          <div class="hinge-prompt" data-idx="1">
+            <div class="hinge-q">I'm convinced that</div>
+            <div class="hinge-a">Math and music are the same language 🎵📐</div>
+          </div>
+          <div class="hinge-prompt" data-idx="2">
+            <div class="hinge-q">The way to my heart is</div>
+            <div class="hinge-a">A clever proof or a good table tennis rally 🏓</div>
+          </div>
+          <div class="hinge-dots">
+            <span class="hdot active" data-to="0"></span>
+            <span class="hdot" data-to="1"></span>
+            <span class="hdot" data-to="2"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info side -->
+      <div class="about-info">
+        <div class="about-stats">
+          <div class="a-stat reveal-up" data-delay="0">
+            <div class="a-val">6.82</div>
+            <div class="a-lbl">CGPA</div>
+          </div>
+          <div class="a-stat reveal-up" data-delay="0.1">
+            <div class="a-val">6+</div>
+            <div class="a-lbl">Projects</div>
+          </div>
+          <div class="a-stat reveal-up" data-delay="0.2">
+            <div class="a-val">2</div>
+            <div class="a-lbl">Researches</div>
+          </div>
+          <div class="a-stat reveal-up" data-delay="0.3">
+            <div class="a-val">4</div>
+            <div class="a-lbl">Certs</div>
+          </div>
+        </div>
+        <div class="about-bio reveal-up" data-delay="0.1">
+          <p>B.Tech CS &amp; Artificial Intelligence at <strong>IIIT Delhi (2022–2026)</strong>. I build systems that think — from neural nets that decode retinal signals to BiLSTM models cracking symmetric ciphers.</p>
+          <p>When I'm not chasing gradients, I'm on the table tennis table or belting songs at Audiobytes.</p>
+        </div>
+        <div class="about-pills reveal-up" data-delay="0.2">
+          <a href="https://github.com/mrinal22258" target="_blank" class="pill-link">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/krmrinal/" target="_blank" class="pill-link">LinkedIn ↗</a>
+          <a href="resume.pdf" target="_blank" class="pill-link">Resume ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS — Bento Grid -->
+  <section id="skills">
+    <div class="section-label reveal-fade">Arsenal</div>
+    <h2 class="section-title reveal-up">Skills &amp; <em>Tools</em></h2>
+    <div class="bento-grid">
+      <div class="bento bento-lg reveal-up" data-delay="0">
+        <div class="bento-tag">Languages</div>
+        <div class="bento-chips"><span>Python</span><span>C++</span><span>Java</span><span>Haskell</span><span>Prolog</span><span>SQL</span></div>
+        <div class="bento-num">06</div>
+      </div>
+      <div class="bento reveal-up" data-delay="0.1" style="--bh:220">
+        <div class="bento-tag">Deep Learning</div>
+        <div class="bento-chips sm"><span>PyTorch</span><span>TensorFlow</span><span>Keras</span></div>
+      </div>
+      <div class="bento reveal-up" data-delay="0.15" style="--bh:280">
+        <div class="bento-tag">Vision &amp; NLP</div>
+        <div class="bento-chips sm"><span>OpenCV</span><span>NLTK</span><span>Scikit-learn</span></div>
+      </div>
+      <div class="bento bento-wide reveal-up" data-delay="0.2" style="--bh:160">
+        <div class="bento-tag">Big Data &amp; Distributed</div>
+        <div class="bento-chips sm"><span>Apache Spark</span><span>Hadoop</span><span>MapReduce</span><span>Giraph</span><span>Neo4j</span></div>
+      </div>
+      <div class="bento reveal-up" data-delay="0.25" style="--bh:30">
+        <div class="bento-tag">Robotics</div>
+        <div class="bento-chips sm"><span>ROS</span><span>Visual Servoing</span></div>
+      </div>
+      <div class="bento reveal-up" data-delay="0.3" style="--bh:350">
+        <div class="bento-tag">Tools</div>
+        <div class="bento-chips sm"><span>Docker</span><span>Git</span><span>Figma</span><span>VSCode</span></div>
+      </div>
+    </div>
+    <div class="skill-bars reveal-up" data-delay="0.1">
+      <div class="sbar" style="--p:90"><span>Python / ML</span><div class="strack"><div class="sfill"></div></div><span>Expert</span></div>
+      <div class="sbar" style="--p:82"><span>Deep Learning</span><div class="strack"><div class="sfill"></div></div><span>Advanced</span></div>
+      <div class="sbar" style="--p:76"><span>NLP / CV</span><div class="strack"><div class="sfill"></div></div><span>Advanced</span></div>
+      <div class="sbar" style="--p:70"><span>Big Data</span><div class="strack"><div class="sfill"></div></div><span>Proficient</span></div>
+      <div class="sbar" style="--p:65"><span>Robotics / ROS</span><div class="strack"><div class="sfill"></div></div><span>Proficient</span></div>
+    </div>
+  </section>
+
+  <!-- RESEARCH — 3D tilt cards -->
+  <section id="research">
+    <div class="section-label reveal-fade">Work &amp; Research</div>
+    <h2 class="section-title reveal-up">Research <em>Timeline</em></h2>
+    <div class="research-grid">
+      <div class="r-card tilt-card reveal-up" data-delay="0">
+        <div class="r-period">Jan – Apr 2025</div>
+        <div class="r-tag">Neuroscience × AI</div>
+        <h3>Witty Lab, IIIT Delhi</h3>
+        <p class="r-role">Undergraduate Researcher · Prof. Pragya Kosta</p>
+        <p class="r-desc">Modeled retinal ganglion cells using DNNs. Developed CNN-BiLSTM and BNCNN pipelines for neuronal firing rate prediction on large-scale retinal datasets.</p>
+        <div class="r-tech"><span>CNN</span><span>BiLSTM</span><span>PyTorch</span><span>Neuroscience</span></div>
+      </div>
+      <div class="r-card tilt-card reveal-up" data-delay="0.15">
+        <div class="r-period">Jan – Apr 2025</div>
+        <div class="r-tag">Cryptography × ML</div>
+        <h3>Cryptography Research, IIIT Delhi</h3>
+        <p class="r-role">Undergraduate Researcher · Prof. Ravi Anand</p>
+        <p class="r-desc">Neural cryptanalysis of lightweight symmetric ciphers. Deep distinguishers (ResNet, CNN-BiLSTM) achieved <strong>74% accuracy on SIMON32/SPECK32</strong>.</p>
+        <div class="r-tech"><span>ResNet</span><span>CNN-BiLSTM</span><span>Cryptography</span><span>SIMON32</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS — Netflix Style -->
+  <section id="projects">
+    <div class="section-label reveal-fade">Selected Work</div>
+    <h2 class="section-title reveal-up">Projects</h2>
+
+    <div class="feat-project reveal-up" data-delay="0">
+      <div class="feat-num">01</div>
+      <div class="feat-body">
+        <div class="feat-tags"><span>Deep Learning</span><span>NLP</span></div>
+        <h3>Gendered Abuse Detection<br>in Indic Languages</h3>
+        <p>CNN-BiLSTM and GRU-Attention models for multilingual abuse detection across English, Hindi, and Tamil tweets. Led insights in low-resource NLP for Indian languages using the ICON23 dataset.</p>
+        <div class="feat-links">
+          <a href="https://github.com/mrinal22258/Gendered-Abuse-Detection-in-Indic-Languages" target="_blank">GitHub ↗</a>
+          <a href="https://www.kaggle.com/competitions/gendered-abuse-detection-shared-task/data" target="_blank">Dataset ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nf-row">
+      <div class="nf-label">More Projects</div>
+      <div class="nf-cards">
+        <div class="nf-card tilt-card reveal-up" data-delay="0" style="--nc:220">
+          <div class="nf-num">02</div>
+          <div class="nf-body">
+            <div class="nf-tags"><span>Robotics</span><span>CV</span></div>
+            <h4>Visual Servoing<br>TurtleBot Tracking</h4>
+            <p>Real-time object tracking with ROS and camera feedback.</p>
+            <a href="https://github.com/mrinal22258/Robotics" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="nf-card tilt-card reveal-up" data-delay="0.1" style="--nc:280">
+          <div class="nf-num">03</div>
+          <div class="nf-body">
+            <div class="nf-tags"><span>Data Science</span><span>ML</span></div>
+            <h4>Diabetes Risk<br>Prediction</h4>
+            <p>BRFSS 2015 analysis with hypothesis testing and ML pipelines.</p>
+            <a href="https://github.com/mrinal22258/Data-Science" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="nf-card tilt-card reveal-up" data-delay="0.2" style="--nc:160">
+          <div class="nf-num">04</div>
+          <div class="nf-body">
+            <div class="nf-tags"><span>Big Data</span><span>Distributed</span></div>
+            <h4>Big Data Analytics<br>Pipeline</h4>
+            <p>Distributed processing with Spark, Hadoop, Giraph, and Neo4j.</p>
+            <a href="https://github.com/mrinal22258/Big-Data-Analytics" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONORS & CERTS -->
+  <section id="honors">
+    <div class="honors-wrap">
+      <div class="honors-col reveal-up" data-delay="0">
+        <div class="section-label">Recognition</div>
+        <h2 class="section-title">Honors &amp;<br><em>Awards</em></h2>
+        <ul class="honors-list">
+          <li><div class="h-ico">🥉</div><div><strong>3rd Place — Sherlocked Enigma '25</strong><p>Lady Shri Ram College · 100+ teams</p></div></li>
+          <li><div class="h-ico">📐</div><div><strong>Core Member — Math Talk 2024</strong><p>Evariste Math Club · 150+ participants</p></div></li>
+          <li><div class="h-ico">🎵</div><div><strong>Performer — Music Week 2025</strong><p>Audiobytes Music Club</p></div></li>
+        </ul>
+      </div>
+      <div class="certs-col reveal-up" data-delay="0.15">
+        <div class="section-label">Credentials</div>
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-cards">
+          <a href="https://github.com/mrinal22258/Certificates/blob/main/IBM_certificate.pdf" target="_blank" class="cert-card"><span class="cert-org">IBM</span><span class="cert-name">Maitreyee 2025</span><span>↗</span></a>
+          <a href="https://github.com/mrinal22258/Nestle-E-Learning-2025-Certificate" target="_blank" class="cert-card"><span class="cert-org">Nestlé</span><span class="cert-name">E-Learning 2025</span><span>↗</span></a>
+          <a href="https://github.com/mrinal22258/SDC-Certificate" target="_blank" class="cert-card"><span class="cert-org">U of Toronto</span><span class="cert-name">Self Driving Cars</span><span>↗</span></a>
+          <a href="https://github.com/mrinal22258/Functional-Programming-Certificate" target="_blank" class="cert-card"><span class="cert-org">U of Helsinki</span><span class="cert-name">Functional Programming I &amp; II</span><span>↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-label reveal-fade">Let's Work Together</div>
+      <h2 class="contact-heading reveal-up">A perfect idea<br>starts with<br><em>one email.</em></h2>
+      <div class="contact-email-wrap reveal-up" data-delay="0.1">
+        <a href="mailto:mrinal22258@iiitd.ac.in" class="contact-email-link" id="emailLink">mrinal22258@iiitd.ac.in →</a>
+      </div>
+      <div class="contact-socials reveal-up" data-delay="0.2">
+        <a href="https://github.com/mrinal22258" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/krmrinal/" target="_blank">LinkedIn</a>
+        <a href="resume.pdf" target="_blank">Resume</a>
+      </div>
+      <div class="contact-vibes reveal-up" data-delay="0.3">
+        <span>Singing 🎵</span><span>Table Tennis 🏓</span><span>Cricket 🏏</span><span>Maths 📐</span>
+      </div>
+    </div>
+    <footer>
+      <span>© 2025 Kumar Mrinal</span>
+      <span>Built with HTML · Hosted on GitHub Pages</span>
+      <a href="#hero">Back to top ↑</a>
+    </footer>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>
