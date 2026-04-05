@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const projectData = [
   {
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&q=80&w=800",
+    image: "/proj-nlp.png",
     title: "Gendered Abuse Detection",
     tags: ["CNN-BiLSTM", "GRU-Attention", "NLP", "Multilingual"],
     desc: "Deep learning models for detecting gendered & explicit abuse in English, Hindi, and Tamil tweets using the ICON23 shared task dataset.",
@@ -12,7 +12,7 @@ const projectData = [
     link: "https://www.kaggle.com/competitions/gendered-abuse-detection-shared-task/data",
   },
   {
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+    image: "/proj-robot.png",
     title: "TurtleBot Visual Servoing",
     tags: ["ROS", "Computer Vision", "Robotics", "OpenCV"],
     desc: "Visual servoing system enabling TurtleBot to track and follow moving objects using real-time camera feedback and motion control algorithms.",
@@ -20,7 +20,7 @@ const projectData = [
     link: "https://github.com/mrinal22258/Robotics",
   },
   {
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
+    image: "/proj-diabetes.png",
     title: "Diabetes Risk Prediction",
     tags: ["ML", "Hypothesis Testing", "BRFSS 2015", "Data Science"],
     desc: "Statistical inference and ML pipeline on BRFSS 2015 data to identify significant risk factors for diabetes, with visualization and model training.",
@@ -28,7 +28,7 @@ const projectData = [
     link: "https://github.com/mrinal22258/Data-Science",
   },
   {
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800",
+    image: "/proj-bigdata.png",
     title: "Big Data Analytics",
     tags: ["Apache Spark", "Hadoop", "Giraph", "Neo4j"],
     desc: "Distributed data processing and graph analytics pipelines using Spark, Hadoop, MapReduce, Giraph, and Neo4j for large-scale dataset analysis.",
