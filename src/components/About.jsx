@@ -41,7 +41,7 @@ export default function About() {
 
         {/* STATIC FRAME IMAGE LEFT */}
         <div className="absolute inset-y-0 left-0 w-[45%] z-10 pointer-events-none overflow-hidden hidden lg:block" style={{ WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)', maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)' }}>
-            <img src="/images/ezgif-frame-240.jpg" alt="Kumar Mrinal" className="w-full h-full object-cover opacity-50 grayscale" />
+            <img src="/photo.jpg" alt="Kumar Mrinal" className="w-full h-full object-cover opacity-60 grayscale" />
         </div>
 
         {/* CONTENT */}
