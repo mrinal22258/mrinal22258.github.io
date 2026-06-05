@@ -1,0 +1,97 @@
+import React from "react";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { motion } from "framer-motion";
+
+const projectData = [
+  {
+    image: "/proj-robot.png",
+    title: "Adversarial Contingency Auctions",
+    tags: ["Multi-Agent Systems", "Robotics", "Decision Making", "Decentralized"],
+    desc: "A decentralized adversarial auction framework for multi-robot coordination under uncertain beliefs, communication failures, and stochastic infrastructure collapse.",
+    github: "https://github.com/mrinal22258/Adversarial-Contingency-Auctions/tree/main/ACA",
+    link: "https://github.com/mrinal22258/Adversarial-Contingency-Auctions/tree/main/ACA",
+  },
+  {
+    image: "/proj-bigdata.png",
+    title: "Learning Reduced-Round Cipher Behaviour",
+    tags: ["Cryptography", "Machine Learning", "Security", "ResNet", "BiLSTM"],
+    desc: "Applied machine learning and statistical analysis to model behavioural patterns in reduced-round lightweight cryptographic ciphers (SIMON/SPECK) for cryptanalytic inference.",
+    github: "https://github.com/mrinal22258/AC_project",
+    link: "https://github.com/mrinal22258/AC_project",
+  },
+  {
+    image: "/proj-nlp.png",
+    title: "Gendered Abuse in Indic Languages",
+    tags: ["XLM-RoBERTa", "CNN-BiLSTM", "Deep Learning", "NLP", "Multilingual"],
+    desc: "Built a multilingual abuse detection pipeline for English, Hindi, and Tamil tweets, achieving 0.67771 Macro F1 score and surpassing the highest public benchmark of 0.61604 on the ICON shared task.",
+    github: "https://github.com/mrinal22258/NLP",
+    link: "https://www.kaggle.com/competitions/gendered-abuse-detection-shared-task/data",
+  },
+];
+
+const Portfolio = () => {
+  return (
+    <section id="projects" className="bg-[#020202] py-24 px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto text-center mb-20">
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-blue-500 font-mono tracking-[0.4em] uppercase text-[10px] mb-4"
+        >
+          Project Showcase
+        </motion.p>
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-4xl md:text-6xl font-black text-white mb-8 uppercase tracking-tighter"
+        >
+          Selected Works<span className="text-blue-500">.</span>
+        </motion.h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
+        {projectData.map((project, index) => (
+          <motion.div
+            key={project.title}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            whileHover={{ y: -6 }}
+            className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all duration-300"
+          >
+            <div className="relative overflow-hidden aspect-[16/9] m-2 rounded-xl">
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+
+            <div className="p-8">
+              <h3 className="text-xl font-black text-white mb-2 tracking-tight uppercase">{project.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-4">{project.desc}</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="text-[9px] uppercase tracking-widest font-mono px-3 py-1 bg-white/10 text-blue-300 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="flex gap-4">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-3 bg-white/5 text-white rounded-xl hover:bg-blue-600 transition-all border border-white/10">
+                  <FiGithub size={18} />
+                </a>
+                <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="External Link" className="p-3 bg-white/5 text-white rounded-xl hover:bg-blue-600 transition-all border border-white/10">
+                  <FiExternalLink size={18} />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Portfolio;
