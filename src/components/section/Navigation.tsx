@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import DarkModeToggle from '../DarkModeToggle';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import { useThemeColors, withAlpha } from '../../hooks/useThemeColors';
@@ -11,39 +11,34 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const themeColors = useThemeColors();
-  const navigate = useNavigate();
   const location = useLocation();
 
   const tabs = useMemo(() => [
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'skills', label: 'Skills' }
+    { id: 'about', label: 'About', path: '/about' },
+    { id: 'experience', label: 'Experience', path: '/experience' },
+    { id: 'projects', label: 'Projects', path: '/projects' },
+    { id: 'skills', label: 'Skills', path: '/skills' },
+    { id: 'certifications', label: 'Certifications', path: '/certifications' },
+    { id: 'contact', label: 'Contact', path: '/contact' }
   ], []);
 
   useEffect(() => {
+    // Update active tab based on path
+    const currentTab = tabs.find(tab => 
+      location.pathname === tab.path || 
+      (tab.path !== '/' && location.pathname.startsWith(tab.path + '/'))
+    );
+    if (currentTab) {
+      setActiveTab(currentTab.id);
+    } else {
+      setActiveTab('');
+    }
+
     const handleScroll = () => {
-      // Check if scrolled
       setIsScrolled(window.scrollY > 10);
-
-      // Update active tab
-      const sections = tabs.map(tab => tab.id);
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-
-      if (currentSection) {
-        setActiveTab(currentSection);
-      }
     };
 
     const handleResize = () => {
-      // Close mobile menu if screen becomes desktop size
       if (window.innerWidth >= 768 && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
       }
@@ -51,32 +46,13 @@ const Navigation = () => {
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
+    handleScroll(); // Initial call
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
     };
-  }, [tabs, isMobileMenuOpen]);
-
-  const scrollToSection = (sectionId: string) => {
-    // If we're not on the home page, navigate there first
-    if (location.pathname !== '/') {
-      navigate('/', { replace: true });
-      // Wait for navigation and then scroll
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      // We're already on the home page, just scroll
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    setIsMobileMenuOpen(false); // Close mobile menu after navigation
-  };
+  }, [tabs, location.pathname, isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -104,32 +80,32 @@ const Navigation = () => {
           ${withAlpha(isDarkMode ? themeColors.colors.dark[900] : themeColors.colors.pink[25], isScrolled ? 0.7 : 0.5)})`
       }}>
       <div className="nav-container">
-        <button className="signature-name"
+        <Link to="/" className="signature-name"
           style={{ 
             cursor: 'pointer', 
             color: themeColors.colors.pink[500], 
             background: 'none', 
             border: 'none',
             outline: 'none',
-            WebkitTextFillColor: themeColors.colors.pink[500]
+            WebkitTextFillColor: themeColors.colors.pink[500],
+            textDecoration: 'none'
           }}
-          onClick={() => window.location.href = '/'}
-          aria-label="Your Name - Go to homepage">
-          Your Name
-        </button>
+          aria-label="Kumar Mrinal - Go to homepage">
+          Kumar Mrinal
+        </Link>
         
         {/* Desktop Navigation */}
         <div className="nav-tabs desktop-nav">
           {tabs.map((tab) => (
-            <button
+            <Link
               key={tab.id}
-              onClick={() => scrollToSection(tab.id)}
+              to={tab.path}
               className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
-              style={{ color: themeColors.text.accent }}
+              style={{ color: themeColors.text.accent, textDecoration: 'none' }}
               aria-label={`Navigate to ${tab.label} section`}
             >
               {tab.label}
-            </button>
+            </Link>
           ))}
           <div className="ml-4">
             <DarkModeToggle
@@ -138,7 +114,7 @@ const Navigation = () => {
             />
           </div>
         </div>
-
+ 
         {/* Mobile Menu Button */}
         <button
           className="mobile-menu-btn relative"
@@ -176,7 +152,7 @@ const Navigation = () => {
           </div>
         </button>
       </div>
-
+ 
       {/* Mobile Navigation Menu */}
       <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}
         style={{
@@ -185,10 +161,11 @@ const Navigation = () => {
           left: 0,
           right: 0,
           flexDirection: 'column',
-          padding: '1rem',
+          padding: isMobileMenuOpen ? '1rem' : '0',
+          pointerEvents: isMobileMenuOpen ? 'auto' : 'none',
           background: themeColors.navigation.mobile,
           borderTop: `1px solid ${themeColors.navigation.border}`,
-          maxHeight: isMobileMenuOpen ? '400px' : '0',
+          maxHeight: isMobileMenuOpen ? '500px' : '0',
           overflow: isMobileMenuOpen ? 'visible' : 'hidden',
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           opacity: isMobileMenuOpen ? 1 : 0,
@@ -200,9 +177,10 @@ const Navigation = () => {
         }}
       >
         {tabs.map((tab, index) => (
-          <button
+          <Link
             key={tab.id}
-            onClick={() => scrollToSection(tab.id)}
+            to={tab.path}
+            onClick={() => setIsMobileMenuOpen(false)}
             className={`mobile-nav-tab ${activeTab === tab.id ? 'active' : ''}`}
             style={{
               background: activeTab === tab.id
@@ -225,13 +203,14 @@ const Navigation = () => {
               cursor: 'pointer',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               opacity: isMobileMenuOpen ? 1 : 0,
-              transitionDelay: isMobileMenuOpen ? `${index * 0.1}s` : '0s',
+              transitionDelay: isMobileMenuOpen ? `${index * 0.05}s` : '0s',
               marginBottom: '0.5rem',
               minHeight: '44px',
               display: 'flex',
               alignItems: 'center',
               outline: 'none',
-              width: '100%'
+              width: '100%',
+              textDecoration: 'none'
             }}
             onMouseEnter={(e) => {
               if (activeTab !== tab.id) {
@@ -252,7 +231,7 @@ const Navigation = () => {
             aria-label={`Navigate to ${tab.label} section`}
           >
             {tab.label}
-          </button>
+          </Link>
         ))}
         <div
           className="mt-6 px-4"
@@ -261,7 +240,7 @@ const Navigation = () => {
             paddingTop: '1rem',
             opacity: isMobileMenuOpen ? 1 : 0,
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            transitionDelay: isMobileMenuOpen ? '0.4s' : '0s',
+            transitionDelay: isMobileMenuOpen ? '0.35s' : '0s',
             position: 'relative',
             zIndex: 10,
             display: 'flex',

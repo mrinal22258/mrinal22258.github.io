@@ -4,6 +4,7 @@ export const socialLinks = {
   github: import.meta.env.VITE_GITHUB_URL,
   linkedin: import.meta.env.VITE_LINKEDIN_URL,
   email: import.meta.env.VITE_EMAIL,
+  resumePath: import.meta.env.VITE_RESUME_PATH || '/assets/resume.pdf',
   
   // GitHub repository URLs
   repositories: {

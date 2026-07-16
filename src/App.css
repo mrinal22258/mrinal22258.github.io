@@ -7,6 +7,14 @@
 }
 
 @font-face {
+  font-family: 'Virgil';
+  src: url('https://cdn.jsdelivr.net/gh/excalidraw/virgil@master/Virgil.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'DK Crayonista';
   src: url('./assets/dk_crayonista/DK Crayonista.ttf') format('truetype');
   font-weight: normal;
@@ -794,4 +802,19 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-page {
+  animation: pageEnter 280ms ease-out forwards;
 }

@@ -23,7 +23,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({ children }) => {
       style={{ backgroundColor: isDarkMode ? themeColors.colors.dark[950] : themeColors.colors.pink[50] }}
     >
       <div className="container mx-auto px-6 max-w-4xl">
-        <BackButton />
+        <BackButton to="/projects" label="Back to Projects" scrollToId="" />
         {children}
       </div>
     </main>

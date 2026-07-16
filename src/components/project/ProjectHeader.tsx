@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, type LucideIcon } from 'lucide-react';
+import { Github, ExternalLink, Database, type LucideIcon } from 'lucide-react';
 import { useThemeColors } from '../../hooks/useThemeColors';
 
 interface ProjectHeaderProps {
@@ -7,6 +7,8 @@ interface ProjectHeaderProps {
   title: string;
   subtitle: string;
   githubUrl: string;
+  liveUrl?: string;
+  kaggleUrl?: string;
   features: {
     icon: LucideIcon;
     title: string;
@@ -19,6 +21,8 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   title, 
   subtitle, 
   githubUrl, 
+  liveUrl,
+  kaggleUrl,
   features 
 }) => {
   const themeColors = useThemeColors();
@@ -30,21 +34,53 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
         <div className="flex-1">
           <h1 className="text-4xl font-bold mb-2" style={{ color: themeColors.text.primary }}>{title}</h1>
           <p className="text-lg" style={{ color: themeColors.text.secondary }}>{subtitle}</p>
-          <div className="flex gap-4 mt-4">
-            <a
-              href={githubUrl}
-              target="_blank"
-              aria-label="View source code on GitHub (opens in new tab)"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg hover:opacity-80 transition-colors"
-              style={{ 
-                backgroundColor: themeColors.interactive.primary,
-                color: themeColors.text.pink
-              }}
-            >
-              <Github className="h-4 w-4" aria-hidden="true" />
-              View Code
-            </a>
+          <div className="flex flex-wrap gap-4 mt-4">
+            {githubUrl && githubUrl !== "#" && (
+              <a
+                href={githubUrl}
+                target="_blank"
+                aria-label="View source code on GitHub (opens in new tab)"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg hover:opacity-80 transition-colors"
+                style={{ 
+                  backgroundColor: themeColors.interactive.primary,
+                  color: themeColors.text.pink
+                }}
+              >
+                <Github className="h-4 w-4" aria-hidden="true" />
+                View Code
+              </a>
+            )}
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                target="_blank"
+                aria-label="View live demo space (opens in new tab)"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg hover:opacity-80 transition-colors text-white"
+                style={{ 
+                  backgroundColor: themeColors.colors.pink[500]
+                }}
+              >
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                Live Demo
+              </a>
+            )}
+            {kaggleUrl && (
+              <a
+                href={kaggleUrl}
+                target="_blank"
+                aria-label="View Kaggle Dataset (opens in new tab)"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg hover:opacity-80 transition-colors text-white"
+                style={{ 
+                  backgroundColor: '#20BEFF'
+                }}
+              >
+                <Database className="h-4 w-4" aria-hidden="true" />
+                Kaggle Dataset
+              </a>
+            )}
           </div>
         </div>
       </div>

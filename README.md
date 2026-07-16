@@ -1,225 +1,111 @@
-# Portfolio Template
+# Kumar Mrinal | AI/ML Engineer & Researcher
 
-A customizable personal portfolio website built with React, TypeScript, and Tailwind CSS. Features interactive elements, smooth animations, dark/light mode, and a clean design.
+An interactive, premium portfolio and research hub showcasing work in multilingual NLP, neuroscience decoders, local enterprise RAG systems, and open-source contributions.
 
-## Getting Started
+Live Link: **[mrinal22258.github.io](https://mrinal22258.github.io/)**
 
-### Prerequisites
+---
 
-- Node.js (v16 or higher)
-- npm or yarn
+## 🚀 Key Highlights & R&D Contributions
 
-### Installation
+### 1. Open Source & Core Infrastructure
+* **Crawl4AI Core Contributor (July 2026):** Resolved compilation and dependency conflicts for `lxml` builds under Python 3.14/Poetry, merging changes upstream to stabilize local containerized scraping pipelines.
+* **AegisRag-Engine (June 2026):** Engineered an air-gapped, high-security local enterprise RAG pipeline utilizing FAISS vector search, LangChain context retrievers, and local LLMs for secure offline document Q&A.
 
-1. Clone the repository
-```bash
-git clone https://github.com/cupidbity/portfolio-template.git
-cd portfolio-template
-```
+### 2. Deep Tech & ML Research (IIIT Delhi)
+* **Electrophysiology Decoders (Jan 2025 - Present):** Built high-accuracy CNN-BiLSTM neural decoders to model electrical signaling response states of ganglion cells.
+* **Neural Cryptanalysis:** Designed lightweight cipher cryptanalysis modeling pipelines using deep neural networks to evaluate cryptographic structural weaknesses, scoring 74% accuracy.
+* **Gendered Abuse Detection (2025):** Developed an Indic multilingual NLP model leveraging XLM-RoBERTa + CNN-BiLSTM feature extractors, scoring a **0.67771 Macro F1** benchmark on the ICON shared task.
+* **Adversarial Contingency Auctions (2026):** Modeled decentralized multi-agent robot allocation algorithms utilizing inconsistent beliefs, adversarial auction structures, and branch bidding trees.
 
-2. Install dependencies
-```bash
-npm install
-```
+---
 
-3. Set up environment variables
-```bash
-cp .env.example .env
-```
+## 🛠️ Skills & Toolkit
 
-4. Start the development server
-```bash
-npm run dev
-```
+* **Languages:** Python, C++, Java, Haskell, SQL
+* **AI/ML:** Generative AI, RAG Platforms (LangChain, LangGraph), Multilingual NLP, Neural Electrophysiology Decoders
+* **Data & Infrastructure:** FAISS Vector Database, Neo4j, Apache Spark, Hadoop
+* **Frameworks & Web:** React 19, TypeScript, Vite, Tailwind CSS, HTML5 Canvas, GLSL/WebGL
 
-5. Build for production
-```bash
-npm run build
-```
+---
 
-## Customization Guide
+## 🏆 Certifications
 
-### 1. Personal Information
+* **Anthropic:** 8+ Professional AI and Developer Certifications
+* **Micro1:** AI Certified Software Engineer (2026)
+* **University of Toronto:** Self-Driving Cars Specialization (MOOC)
+* **University of Helsinki:** Functional Programming (Haskell) Specialization I & II
 
-**Name & Title** — Update your name in these files:
+---
 
-| File | What to change |
-|------|---------------|
-| `index.html` | Page `<title>` |
-| `src/components/section/Navigation.tsx` | Nav bar name and aria-label |
-| `src/components/section/About.tsx` | Hero greeting text (`AsciiMorphText`) |
-| `src/components/Footer.tsx` | Copyright name |
+## 🎨 Interactive Portfolio Features
 
-**Roles** — Edit the typewriter carousel roles in `src/components/section/About.tsx`:
-```tsx
-const roles = [
-  'Software Engineer',
-  'Full-Stack Developer',
-  // Add your own roles
-];
-```
+This portfolio is custom-engineered with a unique notebook scrapbook aesthetic combined with modern, high-performance interactions:
 
-### 2. Profile Images
+1. **WeKnora RAG Chatbot (Bottom-Left):** A client-side, fully offline AI assistant that runs TF-IDF vector matching and sentence-level "needle-in-a-haystack" context extraction to answer questions about qualifications, experiences, and repositories without server queries.
+2. **Holographic 3D Cyber City Planet (Skills Page):** An interactive, canvas-based 3D holographic wireframe planet where skills sit as glowing skyscraper capsules. Features drag-to-spin controls, cursor tag focus, and neon energy rays shooting from the core.
+3. **Borderless Scrapbook Notebook (About Page):** A scanned spiral notebook that acts as an interactive journal. Users can flip pages with chevrons or interactive corner-curls, showing stories, education, and photo albums with realistic shadows and zero dark-mode artifacts.
 
-Add your profile images to `src/assets/`:
-- `profile1.jpg`
-- `profile2.jpg`
-- `profile3.jpg`
+---
 
-Then uncomment the imports in `src/assets/index.ts`:
-```ts
-import profile1 from './profile1.jpg';
-import profile2 from './profile2.jpg';
-import profile3 from './profile3.jpg';
-```
-
-Update the captions in `src/components/section/About.tsx`:
-```tsx
-const profileImages = [
-  { src: profile1, caption: "your caption" },
-  { src: profile2, caption: "your caption" },
-  { src: profile3, caption: "your caption" }
-];
-```
-
-### 3. Journal Image
-
-Replace `src/assets/journal.PNG` with your own journal-style background image for the About section.
-
-### 4. Resume
-
-Place your resume PDF at `public/resume.pdf` — the Resume button in the About section and Footer link to this path.
-
-### 5. Social Links & Environment Variables
-
-Edit your `.env` file with your actual URLs:
-```env
-VITE_GITHUB_URL=https://github.com/yourusername
-VITE_LINKEDIN_URL=https://linkedin.com/in/yourusername
-VITE_EMAIL=your.email@example.com
-
-VITE_GITHUB_PROJECT1_URL=https://github.com/yourusername/project-one
-VITE_GITHUB_PROJECT2_URL=https://github.com/yourusername/project-two
-VITE_GITHUB_PROJECT3_URL=https://github.com/yourusername/project-three
-VITE_GITHUB_PROJECT4_URL=https://github.com/yourusername/project-four
-```
-
-These are consumed in `src/config/socialLinks.ts` — add more repository entries there as needed.
-
-### 6. Projects
-
-**Gallery cards** — Edit the projects array in `src/components/section/Projects.tsx`:
-```tsx
-{
-  title: "Your Project",
-  description: "A brief description of your project.",
-  technologies: ["React", "TypeScript", "Node.js"],
-  icon: YourProjectIcon,        // or use comingSoon as placeholder
-  detailsUrl: "/projects/your-project",
-  githubUrl: socialLinks.repositories.yourProject
-}
-```
-
-**Project icons** — Add icon images to `src/assets/project_icons/` and register them in `src/assets/project_icons/index.ts`:
-```ts
-import YourProjectIcon from './YourProjectIcon.webp';
-export { YourProjectIcon };
-```
-
-**Project detail pages** — Create a detail page for each project at `src/pages/projects/YourProject.tsx`. Use the available components:
-- `ProjectLayout` — Page wrapper with dark mode theming
-- `ProjectHeader` — Icon, title, subtitle, GitHub link, feature grid
-- `ImageCarousel` — Screenshot carousel with navigation
-- `ProjectOverview` — Multi-paragraph description
-- `TechStack` — Technology badges
-- `TechnicalHighlights` — Bulleted achievements list
-
-**Project snapshots** — Add screenshot images to `src/assets/project_snapshots/your-project/` and import them in `src/assets/index.ts`.
-
-**Routing** — Register your project pages in `src/App.tsx`:
-```tsx
-const YourProject = lazy(() => import('./pages/projects/YourProject'))
-// ...
-<Route path="/projects/your-project" element={<YourProject />} />
-```
-
-### 7. Experience
-
-Edit `src/components/section/Experience.tsx` with your work history:
-```tsx
-{
-  title: "Your Job Title",
-  company: "Company Name",
-  location: "City, State",
-  period: "Month Year - Month Year",
-  description: [
-    "Your accomplishment or responsibility",
-  ]
-}
-```
-
-### 8. Certifications
-
-Edit `src/components/section/Certifications.tsx` with your credentials. The section supports two types:
-- **Badges** (e.g., AWS) — with image, title, subtitle, and Credly URL
-- **Credentials** (e.g., CITI) — with image, title, issuer, dates, and credential ID/URL
-
-Replace badge images in `src/assets/badges/` with your own.
-
-### 9. Skills
-
-Update your technical skills in `src/components/section/Skills.tsx`. Skill icons are in `src/assets/techstack/`.
-
-## Project Structure
+## 📦 Project Structure
 
 ```
 portfolio-template/
 ├── src/
 │   ├── assets/
-│   │   ├── project_icons/       # Project icon images
-│   │   ├── project_snapshots/   # Project screenshot folders
-│   │   ├── badges/              # Certification badge images
-│   │   ├── stars/               # Decorative star images
-│   │   ├── stickers/            # Sticker images
-│   │   └── techstack/           # Skill/technology icons
+│   │   ├── badges/              # Certification credentials (AWS, Citi, etc.)
+│   │   ├── stars/               # Decorative scrapbook star assets (optimized WebP/PNG)
+│   │   ├── stickers/            # Interactive scrapbook sticker assets
+│   │   └── techstack/           # Skills and framework SVG icons
 │   ├── components/
-│   │   ├── section/             # Main page sections
-│   │   ├── project/             # Project detail page components
-│   │   └── ui/                  # Reusable UI components
+│   │   ├── section/             # Page sections (About, Skills, Experience, Projects)
+│   │   ├── project/             # Components for project details page (TechStack, Overview)
+│   │   └── ui/                  # Reusable components (WeKnora Chatbot, SkillGlobe planet)
 │   ├── config/
-│   │   └── socialLinks.ts       # Social media & repo URLs
+│   │   └── socialLinks.ts       # Social urls, resumePath configurations
 │   ├── contexts/
-│   │   └── DarkModeContext.tsx   # Theme management
+│   │   └── DarkModeContext.tsx  # Dark mode state management
 │   ├── pages/
-│   │   ├── projects/            # Individual project detail pages
-│   │   └── Contact.tsx          # Contact page
-│   ├── styles/
-│   │   └── colors.ts            # Color palette
-│   └── App.tsx                  # Routes & layout
+│   │   ├── ProjectDetails.tsx   # Detailed sub-view with chat corpus for projects
+│   │   └── Home.tsx             # Interactive dashboard entry page
+│   └── App.tsx                  # Main client-side routing entry
 ├── public/
-│   └── resume.pdf               # Your resume (add this)
-├── .env                         # Your environment variables (create from .env.example)
-└── .env.example                 # Environment variable template
+│   └── assets/
+│       └── resume.pdf           # Live resume download source
+├── .env.example                 # Clean social variables template
+└── index.html                   # HTML entry optimized with Open Graph tags
 ```
 
-## Features
+---
 
-- Dark/light mode with system preference detection
-- Interactive ASCII text with morphing effects
-- Draggable star decorations
-- Aurora gradient backgrounds
-- Animated stickers on scroll
-- Image carousel for project screenshots
-- Responsive design across all devices
-- Lazy-loaded routes and components
+## 🏗️ Local Installation
 
-## Technologies
+1. **Clone the Repo:**
+   ```bash
+   git clone https://github.com/mrinal22258/mrinal22258.github.io.git
+   cd mrinal22258.github.io
+   ```
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Configure Environment Variables:**
+   ```bash
+   cp .env.example .env
+   # Update VITE_GITHUB_URL, VITE_LINKEDIN_URL, VITE_EMAIL with your values
+   ```
+4. **Run Development Server:**
+   ```bash
+   npm run dev
+   ```
+5. **Build Production Assets:**
+   ```bash
+   npm run build
+   ```
 
-- React 19, TypeScript, Vite
-- Tailwind CSS, Radix UI, Lucide Icons
-- GSAP, React Spring, OGL (WebGL)
-- React Router DOM
+---
 
-## License
+## 📄 License
 
-MIT
+Distributed under the MIT License. See `LICENSE` for more information.

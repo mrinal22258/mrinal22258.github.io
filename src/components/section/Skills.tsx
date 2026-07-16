@@ -1,96 +1,111 @@
-import { useEffect, useRef, useState } from "react";
-import DomeGallery from "../ui/domegallery";
-import { useDarkMode } from "../../contexts/DarkModeContext";
-import { useThemeColors } from "../../hooks/useThemeColors";
-import { withAlpha } from "../../hooks/useThemeColors";
+import React from 'react';
+import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useThemeColors } from '../../hooks/useThemeColors';
+import { techStackIcons } from '../../assets/techstack';
+import { SkillGlobe } from './SkillGlobe';
 
 const Skills = () => {
-  const [scale, setScale] = useState(0.5);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const domeContainerRef = useRef<HTMLDivElement>(null);
   const { isDarkMode } = useDarkMode();
   const themeColors = useThemeColors();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
+  // Grouped skills list with icon mappings
+  const skillsData = [
+    {
+      category: "Programming",
+      items: [
+        { name: "Python", icon: null },
+        { name: "SQL", icon: null },
+        { name: "C++", icon: techStackIcons.CPP },
+        { name: "Java", icon: techStackIcons.JavaLight },
+        { name: "C", icon: techStackIcons.C },
+        { name: "Haskell", icon: null }
+      ]
+    },
+    {
+      category: "AI/ML",
+      items: [
+        { name: "Machine Learning", icon: null },
+        { name: "Deep Learning", icon: null },
+        { name: "Generative AI", icon: null },
+        { name: "Agentic AI", icon: null },
+        { name: "LLMs", icon: null },
+        { name: "NLP", icon: null },
+        { name: "Computer Vision", icon: null },
+        { name: "RAG", icon: null }
+      ]
+    },
+    {
+      category: "LLM Engineering",
+      items: [
+        { name: "LangChain", icon: null },
+        { name: "LangGraph", icon: null },
+        { name: "MCP (Model Context Protocol)", icon: null },
+        { name: "AI Agents", icon: null },
+        { name: "Function Calling", icon: null },
+        { name: "Agent Orchestration", icon: null },
+        { name: "Semantic Search", icon: null }
+      ]
+    },
+    {
+      category: "Data & Infra",
+      items: [
+        { name: "FAISS", icon: null },
+        { name: "Vector Databases", icon: null },
+        { name: "Neo4j", icon: null },
+        { name: "Apache Spark", icon: null },
+        { name: "Hadoop", icon: null }
+      ]
+    },
+    {
+      category: "Core CS & Math",
+      items: [
+        { name: "Data Structures & Algorithms", icon: null },
+        { name: "Operating Systems", icon: null },
+        { name: "DBMS", icon: null },
+        { name: "Probability & Statistics", icon: null },
+        { name: "Linear Algebra", icon: null }
+      ]
+    },
+    {
+      category: "Domains",
+      items: [
+        { name: "Quantitative Finance", icon: null },
+        { name: "Robotics", icon: null },
+        { name: "Multilingual AI", icon: null }
+      ]
+    }
+  ];
 
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Calculate visibility based on how centered the section is
-      let visibilityRatio = 0;
-
-      if (rect.top <= windowHeight && rect.bottom >= 0) {
-        const sectionHeight = rect.height;
-        const sectionCenter = rect.top + sectionHeight / 2;
-        const windowCenter = windowHeight / 2;
-        const distanceFromCenter = Math.abs(sectionCenter - windowCenter);
-        const maxDistance = windowHeight / 2 + sectionHeight / 2;
-
-        // Smooth curve that peaks when section is centered
-        visibilityRatio = 1 - (distanceFromCenter / maxDistance);
-        visibilityRatio = Math.max(0, Math.min(1, visibilityRatio));
-
-        // Apply easing curve for more natural growth
-        visibilityRatio = visibilityRatio * visibilityRatio * (3 - 2 * visibilityRatio);
-      }
-
-      // Scale from 0.5 to 1 instead of 0 to 1 for better starting size
-      const minScale = 0.5;
-      const maxScale = 1;
-      const finalScale = minScale + (maxScale - minScale) * visibilityRatio;
-      setScale(finalScale);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial calculation
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+  const flatSkills = React.useMemo(() => {
+    return skillsData.flatMap(group => 
+      group.items.map(item => ({
+        name: item.name,
+        category: group.category
+      }))
+    );
   }, []);
 
   return (
-    <section ref={sectionRef} id="skills" className="min-h-screen py-20 relative" style={{
+    <section id="skills" className="py-12 md:py-20 relative min-h-screen animate-fadeIn" style={{
       background: themeColors.background.sections?.skills || themeColors.background.gradient,
       transition: 'background 0.3s ease-in-out'
     }}>
-      {/* Gradient overlay for smooth transition from previous section */}
-      <div 
-        className="absolute top-0 left-0 right-0 pointer-events-none"
-        style={{
-          height: '300px',
-          background: isDarkMode 
-            ? `linear-gradient(180deg, ${themeColors.background.gradientEnd} 0%, transparent 100%)`
-            : `linear-gradient(180deg, ${themeColors.colors.pink[25]} 0%, transparent 100%)`,
-          zIndex: 1
-        }}
-      />
-      <div className="container mx-auto px-6 relative" style={{ zIndex: 2 }}>
-        <h2 className="text-4xl font-bold text-center mb-12" style={{ color: isDarkMode ? themeColors.colors.white : themeColors.colors.pink[500] }}>Skills</h2>
-        <div
-          ref={domeContainerRef}
-          className="relative w-full"
-          style={{
-            height: '600px',
-            transform: `scale(${scale})`,
-            transformOrigin: 'center center',
-            willChange: 'transform',
-          }}
-        >
-          <DomeGallery />
-          {/* Faded edges overlay with performance-optimized blending */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: isDarkMode
-                ? `radial-gradient(ellipse at center, transparent 40%, ${withAlpha(themeColors.colors.dark[900], 0.1)} 70%, ${withAlpha(themeColors.colors.dark[900], 0.6)} 90%, ${withAlpha(themeColors.colors.dark[900], 0.8)} 100%)`
-                : `radial-gradient(ellipse at center, transparent 40%, ${withAlpha(themeColors.colors.pink[50], 0.1)} 70%, ${withAlpha(themeColors.colors.pink[50], 0.6)} 90%, ${withAlpha(themeColors.colors.pink[50], 0.8)} 100%)`,
-              maskImage: 'radial-gradient(ellipse at center, black 50%, transparent 85%)',
-              WebkitMaskImage: 'radial-gradient(ellipse at center, black 50%, transparent 85%)',
-            }}
-          />
+      <div className="container mx-auto px-6 max-w-5xl relative z-10">
+        <header className="text-center mb-10">
+          <h2 className="text-4xl font-bold mb-4" style={{ 
+            fontFamily: "'DK Crayonista', cursive",
+            color: isDarkMode ? themeColors.colors.white : themeColors.colors.pink[500] 
+          }}>
+            Skills Directory
+          </h2>
+          <p className="text-sm md:text-base max-w-xl mx-auto" style={{ color: themeColors.text.secondary }}>
+            Explore my engineering toolkit, math, and AI competencies interactively. Drag to rotate the holographic planet, hover to focus tags, and watch energy rays shoot out from the core.
+          </p>
+        </header>
+
+        {/* Interactive 3D Skill Globe */}
+        <div className="mb-8">
+          <SkillGlobe skills={flatSkills} />
         </div>
       </div>
     </section>
