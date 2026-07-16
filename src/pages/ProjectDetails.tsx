@@ -188,7 +188,7 @@ const ProjectDetails = () => {
         text: `Hi! I am the local project assistant for ${project.title}. Ask me anything about its features, technologies, or implementation details!` 
       }
     ]);
-  }, [project]);
+  }, [projectId, project.title]);
 
   // Project assistant retrieval logic (local QA bot)
   const handleSendMessage = (e: React.FormEvent) => {
