@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github, Linkedin } from 'lucide-react';
+import { Mail, Github, Linkedin, Heart, X } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { useThemeColors } from '../hooks/useThemeColors';
 import Aurora from '../components/ui/aurora';
@@ -9,6 +9,7 @@ import { socialLinks } from '../config/socialLinks';
 const Contact = () => {
   const { isDarkMode } = useDarkMode();
   const themeColors = useThemeColors();
+  const [isVideoOpen, setIsVideoOpen] = React.useState(false);
 
   // Scroll to top when component mounts
   React.useEffect(() => {
@@ -44,7 +45,7 @@ const Contact = () => {
         </header>
 
         {/* Contact Cards */}
-        <section className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto" aria-label="Contact methods">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" aria-label="Contact methods">
           
           {/* Email Card */}
           <article className="rounded-lg shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300" style={{ backgroundColor: themeColors.card.background }} aria-labelledby="email-heading">
@@ -110,8 +111,70 @@ const Contact = () => {
             <p className="text-xs mt-3" style={{ color: themeColors.text.tertiary }}>{socialLinks.display.linkedin}</p>
           </article>
 
+          {/* Thank You Card */}
+          <article className="rounded-lg shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300 flex flex-col justify-between" style={{ backgroundColor: themeColors.card.background }} aria-labelledby="thankyou-heading">
+            <div>
+              <div className="flex justify-center mb-4">
+                <Heart className="h-12 w-12 fill-current" style={{ color: themeColors.colors.pink[500] }} aria-hidden="true" />
+              </div>
+              <h3 id="thankyou-heading" className="text-xl font-semibold mb-2" style={{ color: themeColors.text.primary }}>Thank You</h3>
+            </div>
+            <div>
+              <button 
+                onClick={() => setIsVideoOpen(true)}
+                aria-label="Play thank you video"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:opacity-85 cursor-pointer w-full text-center"
+                style={{
+                  backgroundColor: themeColors.interactive.primary,
+                  color: themeColors.text.pink,
+                  border: 'none'
+                }}
+              >
+                Watch Video
+              </button>
+              <p className="text-xs mt-3 animate-pulse" style={{ color: themeColors.text.tertiary }}>A video message ˚ʚ♡ɞ˚</p>
+            </div>
+          </article>
+
         </section>
       </div>
+
+      {/* Video Overlay Modal */}
+      {isVideoOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in"
+          onClick={() => setIsVideoOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Thank you video presentation"
+        >
+          <div 
+            className="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl border"
+            style={{ borderColor: themeColors.colors.pink[500] }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setIsVideoOpen(false)}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-pink-600 hover:text-white transition-colors duration-200 cursor-pointer"
+              aria-label="Close video player"
+            >
+              <X className="h-6 w-6" />
+            </button>
+
+            {/* Video Player */}
+            <div className="aspect-video w-full">
+              <video
+                src="/videoplayback.mp4"
+                controls
+                autoPlay
+                className="w-full h-full object-cover"
+                aria-label="Kumar Mrinal's thank you video"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
